@@ -1,0 +1,25 @@
+# src/AppBundle/Resources/config/doctrine/Comment.orm.yml
+AppBundle\Entity\Comment:
+  type: entity
+  #repositoryClass: AppBundle\Repository\CommentRepository
+  table: comment
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    content:
+      type: text
+    author_email:
+      type: string
+      length: 255
+    published_at:
+      type: datetime
+  manyToOne:
+    post:
+      targetEntity: Post
+      inversedBy: comments
+      #cascade: [ persist ]
+      joinColumn:
+        name: post_id
+        referencedColumnName: id
