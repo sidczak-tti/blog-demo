@@ -11,7 +11,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-
+//use AppBundle\Entity\User;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Comment;
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -40,12 +40,32 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
      */
     public function load(ObjectManager $manager)
     {
-
+        //$this->loadUsers($manager);
         $this->loadPosts($manager);
     }
+/*
+    private function loadUsers(ObjectManager $manager)
+    {
+        $passwordEncoder = $this->container->get('security.password_encoder');
 
+        $johnUser = new User();
+        $johnUser->setUsername('john_user');
+        $johnUser->setEmail('john_user@symfony.com');
+        $encodedPassword = $passwordEncoder->encodePassword($johnUser, 'kitten');
+        $johnUser->setPassword($encodedPassword);
+        $manager->persist($johnUser);
 
+        $annaAdmin = new User();
+        $annaAdmin->setUsername('anna_admin');
+        $annaAdmin->setEmail('anna_admin@symfony.com');
+        $annaAdmin->setRoles(array('ROLE_ADMIN'));
+        $encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
+        $annaAdmin->setPassword($encodedPassword);
+        $manager->persist($annaAdmin);
 
+        $manager->flush();
+    }
+*/
     private function loadPosts(ObjectManager $manager)
     {
         foreach (range(1, 30) as $i) {

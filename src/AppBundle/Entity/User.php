@@ -28,7 +28,7 @@ class User
     private $password;
 
     /**
-     * @var string
+     * @var array
      */
     private $roles;
 
@@ -118,7 +118,7 @@ class User
     /**
      * Set roles
      *
-     * @param string $roles
+     * @param array $roles
      *
      * @return User
      */
@@ -132,7 +132,7 @@ class User
     /**
      * Get roles
      *
-     * @return string
+     * @return array
      */
     public function getRoles()
     {

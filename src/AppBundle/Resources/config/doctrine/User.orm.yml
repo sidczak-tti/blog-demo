@@ -18,4 +18,4 @@ AppBundle\Entity\User:
       type: string
       length: 255
     roles:
-      type: text
+      type: json_array
