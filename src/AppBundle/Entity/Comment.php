@@ -146,4 +146,3 @@ class Comment
         return $this->post;
     }
 }
-
