@@ -73,7 +73,8 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 
             $post->setTitle($this->getRandomPostTitle());
             $post->setSummary($this->getRandomPostSummary());
-            $post->setSlug('xxx');
+            //$post->setSlug('xxx');
+            $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
             $post->setAuthorEmail('anna_admin@symfony.com');
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
