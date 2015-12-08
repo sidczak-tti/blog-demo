@@ -11,7 +11,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-//use AppBundle\Entity\User;
+use AppBundle\Entity\User;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Comment;
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -40,10 +40,10 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
      */
     public function load(ObjectManager $manager)
     {
-        //$this->loadUsers($manager);
+        $this->loadUsers($manager);
         $this->loadPosts($manager);
     }
-/*
+
     private function loadUsers(ObjectManager $manager)
     {
         $passwordEncoder = $this->container->get('security.password_encoder');
@@ -51,7 +51,8 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $johnUser = new User();
         $johnUser->setUsername('john_user');
         $johnUser->setEmail('john_user@symfony.com');
-        $encodedPassword = $passwordEncoder->encodePassword($johnUser, 'kitten');
+        //$encodedPassword = $passwordEncoder->encodePassword($johnUser, 'kitten');
+        $encodedPassword = 'user';
         $johnUser->setPassword($encodedPassword);
         $manager->persist($johnUser);
 
@@ -59,13 +60,14 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $annaAdmin->setUsername('anna_admin');
         $annaAdmin->setEmail('anna_admin@symfony.com');
         $annaAdmin->setRoles(array('ROLE_ADMIN'));
-        $encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
+        //$encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
+        $encodedPassword = 'admin';
         $annaAdmin->setPassword($encodedPassword);
         $manager->persist($annaAdmin);
 
         $manager->flush();
     }
-*/
+
     private function loadPosts(ObjectManager $manager)
     {
         foreach (range(1, 30) as $i) {
@@ -73,7 +75,6 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 
             $post->setTitle($this->getRandomPostTitle());
             $post->setSummary($this->getRandomPostSummary());
-            //$post->setSlug('xxx');
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
             $post->setAuthorEmail('anna_admin@symfony.com');

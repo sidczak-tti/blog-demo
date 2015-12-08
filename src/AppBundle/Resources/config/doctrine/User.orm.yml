@@ -19,3 +19,4 @@ AppBundle\Entity\User:
       length: 255
     roles:
       type: json_array
+      nullable: true
